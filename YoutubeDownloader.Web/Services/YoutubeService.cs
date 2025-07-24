@@ -105,9 +105,4 @@ public class YoutubeService
             throw;
         }
     }
-        {
-            FilePath = filePath,
-            FileName = fileName
-        };
-    }
 }
