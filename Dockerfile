@@ -7,16 +7,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# Copy solution and project files
-COPY YoutubeDownloader.sln ./
+# Copy project file
 COPY YoutubeDownloader.Web/YoutubeDownloader.Web.csproj YoutubeDownloader.Web/
-COPY YoutubeDownloader.Core/YoutubeDownloader.Core.csproj YoutubeDownloader.Core/
 
-# Copy directories for project references (even if empty)
-COPY YoutubeDownloader.Web/ YoutubeDownloader.Web/
-COPY YoutubeDownloader.Core/ YoutubeDownloader.Core/
-
-# Restore as distinct layers
+# Restore dependencies
 RUN dotnet restore YoutubeDownloader.Web/YoutubeDownloader.Web.csproj
 
 # Copy everything else and build

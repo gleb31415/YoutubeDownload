@@ -9,12 +9,6 @@
   <ItemGroup>
     <PackageReference Include="YoutubeExplode" Version="6.5.4" />
     <PackageReference Include="YoutubeExplode.Converter" Version="6.5.4" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="../YoutubeDownloader.Core/YoutubeDownloader.Core.csproj" />
   </ItemGroup>
 
 </Project>
