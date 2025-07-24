@@ -9,6 +9,7 @@ builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddScoped<YoutubeService>();
+builder.Services.AddLogging();
 
 // Add CORS
 builder.Services.AddCors(options =>

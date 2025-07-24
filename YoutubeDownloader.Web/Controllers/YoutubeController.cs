@@ -9,10 +9,12 @@ namespace YoutubeDownloader.Web.Controllers;
 public class YoutubeController : ControllerBase
 {
     private readonly YoutubeService _youtubeService;
+    private readonly ILogger<YoutubeController> _logger;
 
-    public YoutubeController(YoutubeService youtubeService)
+    public YoutubeController(YoutubeService youtubeService, ILogger<YoutubeController> logger)
     {
         _youtubeService = youtubeService;
+        _logger = logger;
     }
 
     [HttpPost("download")]
