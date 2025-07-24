@@ -20,6 +20,15 @@ public class YoutubeController : ControllerBase
     {
         try
         {
+            // Validate input
+            if (string.IsNullOrEmpty(request?.Url))
+            {
+                return BadRequest(new { message = "URL is required" });
+            }
+
+            // Log the request
+            Console.WriteLine($"Download request for URL: {request.Url}, Quality: {request.Quality}");
+            
             var result = await _youtubeService.DownloadVideoAsync(request.Url, request.Quality);
             
             var fileBytes = await System.IO.File.ReadAllBytesAsync(result.FilePath);
@@ -31,7 +40,11 @@ public class YoutubeController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(new { message = ex.Message });
+            // Log the error
+            Console.WriteLine($"Error downloading video: {ex.Message}");
+            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            
+            return BadRequest(new { message = ex.Message, details = ex.ToString() });
         }
     }
 

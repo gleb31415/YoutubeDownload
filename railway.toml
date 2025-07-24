@@ -1,0 +1,9 @@
+[build]
+builder = "dockerfile"
+
+[deploy]
+dockerfilePath = "Dockerfile"
+
+[variables]
+PORT = "8080"
+RAILWAY_ENVIRONMENT = "production"
