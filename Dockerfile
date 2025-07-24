@@ -33,3 +33,5 @@ COPY --from=publish /app/publish .
 RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["dotnet", "YoutubeDownloader.Web.dll"]
+# Clear NuGet caches
+RUN dotnet nuget locals all --clear
