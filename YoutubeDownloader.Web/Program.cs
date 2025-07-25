@@ -8,7 +8,6 @@ builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddScoped<YoutubeService>();
 builder.Services.AddLogging();
 
 // Add CORS
@@ -35,6 +34,20 @@ app.MapControllers();
 
 // Serve the HTML page
 app.MapGet("/", () => Results.Content(GetIndexHtml(), "text/html"));
+
+// Diagnostic endpoint to test outbound HTTP access
+app.MapGet("/test-yt", async () => {
+    try
+    {
+        using var http = new HttpClient();
+        var result = await http.GetAsync("https://www.youtube.com/");
+        return Results.Text($"Status: {result.StatusCode}");
+    }
+    catch (Exception ex)
+    {
+        return Results.Text($"Error: {ex.Message}");
+    }
+});
 
 app.Run();
 
