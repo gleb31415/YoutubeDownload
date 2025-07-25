@@ -112,16 +112,4 @@ namespace YoutubeDownloader.Web.Services
             }
         }
     }
-    app.MapGet("/test-yt", async () => {
-    try
-    {
-        using var http = new HttpClient();
-        var result = await http.GetAsync("https://www.youtube.com/");
-        return Results.Text($"Status: {result.StatusCode}");
-    }
-    catch (Exception ex)
-    {
-        return Results.Text($"Error: {ex.Message}");
-    }
-});
 }
